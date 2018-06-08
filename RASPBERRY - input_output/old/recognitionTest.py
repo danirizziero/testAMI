@@ -2,6 +2,7 @@ import sys
 import wave
 import getopt
 import time
+import alsaaudio  # FUNZIONA SOLO SU LINUX, ALSA è IL GESTORE INPUT/OUTPUT DI LINUX
 
 # speech recognition packages
 import speech_recognition as sr
@@ -13,7 +14,7 @@ def yes_or_no(file):
 
     # FILE contenente la risposta:
 
-    AUDIO_FILE = 'newRecordingTest.wav'
+    AUDIO_FILE = 'testANSWER.wav'
 
     letsGo = 1 
     i=0
