@@ -1,50 +1,74 @@
 # speech recognition packages
 import speech_recognition as sr
+import inputTest
+import datetime
 
-if __name__ == "__main__":
-    # FILE contenente la risposta:
 
+def recognition_test():
+
+    
+    yes_dictionary = ["yes", "yes yes", "yes yes yes",
+                      "yesh", "yes please", "oh yes",
+                      "yeah", "yep", "yet", "yay", "yes sir",
+                      "ye", "yeadon", "yeck", "yeckley", "yedda",
+                      "yeh", "yehle", "yell", "yelp", "yen",
+                      "yepez", "yesen", "yest", "yeske",
+                      "yesterday", "yett", "yoest"]
+    
+    no_dictionary = ["no", "no thanks", "no no",
+                     "no no no", "know", "na",
+                     "now", "wow", "bow", "go", "mo",
+                     "mow", "noa", "noaa", "noah",
+                     "noble", "noce", "node", "noe",
+                     "noh", "nohl", "nold", "noll",
+                     "nome", "nomo", "nolf"]
     lets_go = 1
-    recognised_yes = ["yes", "yes yes", "yes yes yes", "yesh", "yes please", "oh yes", "now", "wow"]
-    recognised_no = ["no", "no thanks", "no no", "no no no", "know", "na", "bow", "go", "mo", "mow"]
     YN=1
-    while (lets_go):
+    while (lets_go==1):
 
         # todo nel caso di input live, SCOMMENTATE
-        # inputTest()
+        print("\n\nTalk!")
+        inputTest.input_test()
 
         # use the audio file as the audio source
         r = sr.Recognizer()
-        AUDIO_FILE = 'noTest.wav'
-        with sr.AudioFile(AUDIO_FILE) as source:
+        answer_from_user = 'ANSWER.wav'
+        with sr.AudioFile(answer_from_user) as source:
             audio = r.record(source)  # read the entire audio file
 
         try:
             recognised_answer = r.recognize_sphinx(audio)
+            print("-->",recognised_answer)
+
         except sr.UnknownValueError:
             # COMUNICO L'ERRORE E L'UTENTE DEVE REINSERIRE
-            #return -1
+            return -1
             pass
 
-        if (recognised_answer in recognised_yes):  # OK
-            print("\n\t\thai detto YES")
+        if (recognised_answer in yes_dictionary):  # OK
+            print("\n\tHai detto YES")
         else:  # OK
-            if (recognised_answer in recognised_no):
-                print("\n\t\thai detto NO")
+            if (recognised_answer in no_dictionary):
+                print("\n\tHai detto NO")
             else:  # ho riconosciuto un altra parola! LA SALVO!!
                 print("\n\t\tAltra parola trovata! --> ", recognised_answer)
-                print("\n\t\t\t\t\tEra un YES o NO? 1/0")
-        input(YN)
+
+        YN = input("\n\t\t\t\t\tEra un YES o NO? 1/0")
         if (YN):
-            recognised_yes.append(recognised_answer)
+            yes_dictionary.append(recognised_answer)
         else:
-            recognised_no.append(recognised_answer)
-        print("\n\nAltro input? 1/0")
-        input(lets_go)
+            no_dictionary.append(recognised_answer)
+        lets_go= input("\n\nAltro input? 1/0")
 
     print("\nEcco le parole estranee riconosciute per YES:")
-    print(recognised_yes)
+    print(yes_dictionary)
     print("\nEcco le parole estranee riconosciute per NO:")
-    print(recognised_no)
+    print(no_dictionary)
+        
+        
+    input("\n\nPremere un tasto per uscire!")
 
-    input(lets_go)
+
+
+if __name__ == "__main__":
+	recognition_test()
