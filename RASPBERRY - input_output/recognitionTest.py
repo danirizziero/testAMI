@@ -5,8 +5,6 @@ import datetime
 
 
 def recognition_test():
-
-    
     yes_dictionary = ["yes", "yes yes", "yes yes yes",
                       "yesh", "yes please", "oh yes",
                       "yeah", "yep", "yet", "yay", "yes sir",
@@ -14,17 +12,17 @@ def recognition_test():
                       "yeh", "yehle", "yell", "yelp", "yen",
                       "yepez", "yesen", "yest", "yeske",
                       "yesterday", "yett", "yoest"]
-    
-    no_dictionary = ["no", "no thanks", "no no",
-                     "no no no", "know", "na",
+
+    no_dictionary = ["no", "no thanks", "no no no",
+                     "no no", "know", "na",
                      "now", "wow", "bow", "go", "mo",
                      "mow", "noa", "noaa", "noah",
                      "noble", "noce", "node", "noe",
                      "noh", "nohl", "nold", "noll",
                      "nome", "nomo", "nolf"]
     lets_go = 1
-    YN=1
-    while (lets_go==1):
+    YN = 1
+    while (lets_go == 1):
 
         # todo nel caso di input live, SCOMMENTATE
         print("\n\nTalk!")
@@ -38,7 +36,7 @@ def recognition_test():
 
         try:
             recognised_answer = r.recognize_sphinx(audio)
-            print("-->",recognised_answer)
+            print("-->", recognised_answer)
 
         except sr.UnknownValueError:
             # COMUNICO L'ERRORE E L'UTENTE DEVE REINSERIRE
@@ -58,17 +56,15 @@ def recognition_test():
             yes_dictionary.append(recognised_answer)
         else:
             no_dictionary.append(recognised_answer)
-        lets_go= input("\n\nAltro input? 1/0")
+        lets_go = input("\n\nAltro input? 1/0")
 
     print("\nEcco le parole estranee riconosciute per YES:")
     print(yes_dictionary)
     print("\nEcco le parole estranee riconosciute per NO:")
     print(no_dictionary)
-        
-        
+
     input("\n\nPremere un tasto per uscire!")
 
 
-
 if __name__ == "__main__":
-	recognition_test()
+    recognition_test()
