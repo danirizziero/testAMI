@@ -1,7 +1,6 @@
 # Used for sensing the motion in the environment
 from requests import request, RequestException
-import time
-from javascript import null
+#import time
 
 
 #Getting the info for the url and putting them into a dictionary
