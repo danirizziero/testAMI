@@ -4,17 +4,15 @@ import inputTest
 import datetime
 
 
+
 def recognition_test():
-    yes_dictionary = ["yes", "yes yes", "yes yes yes",
-                      "yesh", "yes please", "oh yes",
-                      "yeah", "yep", "yet", "yay", "yes sir",
+    yes_dictionary = ["yes", "yesh", "yeah", "yep", "yet", "yay",
                       "ye", "yeadon", "yeck", "yeckley", "yedda",
                       "yeh", "yehle", "yell", "yelp", "yen",
                       "yepez", "yesen", "yest", "yeske",
                       "yesterday", "yett", "yoest"]
 
-    no_dictionary = ["no", "no thanks", "no no no",
-                     "no no", "know", "na",
+    no_dictionary = ["no", "know", "na",
                      "now", "wow", "bow", "go", "mo",
                      "mow", "noa", "noaa", "noah",
                      "noble", "noce", "node", "noe",
@@ -22,7 +20,7 @@ def recognition_test():
                      "nome", "nomo", "nolf"]
     lets_go = 1
     YN = 1
-    while (lets_go == 1):
+    while (lets_go):
 
         # todo nel caso di input live, SCOMMENTATE
         print("\n\nTalk!")
@@ -42,14 +40,25 @@ def recognition_test():
             # COMUNICO L'ERRORE E L'UTENTE DEVE REINSERIRE
             return -1
             pass
-
-        if (recognised_answer in yes_dictionary):  # OK
-            print("\n\tHai detto YES")
-        else:  # OK
-            if (recognised_answer in no_dictionary):
-                print("\n\tHai detto NO")
-            else:  # ho riconosciuto un altra parola! LA SALVO!!
-                print("\n\t\tAltra parola trovata! --> ", recognised_answer)
+        
+        
+        found = False
+        for yes_word in yes_dictionary: #controllo le possibili foneticamente simili a YES
+            print(recognised_answer," <-> ",yes_word," --> ",recognised_answer.find(yes_word))
+            if recognised_answer.find(yes_word) != -1:
+                print("\n\tHai detto YES")
+                found = True
+                break
+        if not found:
+            for no_word in no_dictionary: #controllo le possibili foneticamente simili a YES
+                print("\t\t",recognised_answer," <-> ",no_word," --> ",recognised_answer.find(no_word))
+                if recognised_answer.find(no_word) != -1:
+                    print("\n\tHai detto NO")
+                    found = True
+                    break
+        if not found: # ho riconosciuto un altra parola! LA SALVO!!
+            print("\n\t\tAltra parola trovata! --> ", recognised_answer)
+                
 
         YN = input("\n\t\t\t\t\tEra un YES o NO? 1/0")
         if (YN):
