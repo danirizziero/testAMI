@@ -77,16 +77,12 @@ def user_detected():
     Devices.pop('1')
 
 
-    device_id = 12 #X = ID del nostro sensore/device, da verificare sull'interfaccia web
-    #FOR INUTILE MA NECESSARIO PER IL FUNZIONAMENTO, NON SI SA PERCHè.
-    #PROVARE PER CREDERE
-    for device_id in Devices:
-        pass
-
+    device_id = '12' #X = ID del nostro sensore/device, da verificare sull'interfaccia web
+    
     if DEBUG:
         #print("Devices:", Devices)
-        for device_id in Devices:
-            print(device_id)
+        for device_id_DEBUG in Devices:
+            print(device_id_DEBUG)
 
     # URL for reaching the device
     device_url = main_url + '/ZWaveAPI/Run/devices[{}].instances[{}].commandClasses[{}]'
