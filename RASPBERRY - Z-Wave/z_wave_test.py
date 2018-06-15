@@ -59,7 +59,7 @@ def get(method='GET', url=None, data=None, headers={},auth=None):
 
 
 
-DEBUG = False
+DEBUG = True
 DEBUGloop = True
 
 
@@ -84,7 +84,7 @@ def user_detected():
         pass
 
     if DEBUG:
-        print("Devices:", Devices)
+        #print("Devices:", Devices)
         for device_id in Devices:
             print(device_id)
 

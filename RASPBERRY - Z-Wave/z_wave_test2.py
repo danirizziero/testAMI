@@ -1,7 +1,6 @@
 # Used for sensing the motion in the environment
 from requests import request, RequestException
 import time
-from javascript import null
 
 
 # Getting the info for the url and putting them into a dictionary
@@ -60,7 +59,7 @@ def get(method='GET', url=None, data=None, headers={}, auth=None):
     return updating_data
 
 
-DEBUG = False
+DEBUG = True
 
 
 def user_detected():
@@ -76,7 +75,6 @@ def user_detected():
     Devices = Devices['devices']
     Devices.pop('1')
 
-    DEBUG = False
 
     device_id = 12  # X = ID del nostro sensore/device, da verificare sull'interfaccia web
     # FOR INUTILE MA NECESSARIO PER IL FUNZIONAMENTO, NON SI SA PERCHè.
@@ -86,7 +84,7 @@ def user_detected():
 
 # D E B U G
     if DEBUG:
-        print("Devices:", Devices)
+        #print("Devices:", Devices)
         for device_id in Devices:
             print(device_id)
 
